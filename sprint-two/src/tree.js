@@ -10,7 +10,7 @@ var Tree = function(value) {
 };
 
 var treeMethods = {
-
+  
 };
 
 // I.O.C.E.
@@ -43,52 +43,28 @@ treeMethods.addChild = function(value) {
 // edge cases - if target is undefined
 
 // Pseudocode:
-// 1.) Run a for loop to iterate over every member of the current tree's children array
+// 1.) Check if the current children.value is the same as the originally passed-in target
 // 2.) If the current child equals the target, return true
 // 3.) If the current child doesn't equal the target, check if it has any children
 // 4.) If the current child does have children, recursively run this same function and pass the children in
 // 5.) If the current child doesn't have children, just return false
 
-// treeMethods.contains = function(target) {
-//   if (this.children[0].value === target) {
-//     return true;
-//   } else {
-//     if (this.children.children === undefined) {
-//       return false;
-//     } else {
-//       return true;
-//     }
-//   }
-// };
-
-// treeMethods.contains = function(target) {
-//   for (var i = 0; i < this.children.length; i++) {
-//     if (this.children[i].value === target) {
-//       return true;
-//     } else {
-//       if (this.children[i].children.length === 0) {
-//         return false;
-//       } else {
-//         debugger;
-//         return this.contains(this.children[i].children[0].value);
-//       }
-//     }
-//   }
-// };
-
 treeMethods.contains = function(target) {
-  if (this.children.value === target) {
-    return true;
-  } else {
-    if (this.children.length === 0) {
-      return false;
+  if (target === undefined) {
+    return false;
+  }
+  for (var i = 0; i < this.children.length; i++) {
+    if (this.children[i].value === target) {
+      return true;
     } else {
-      debugger;
-      return this.contains(this.children[0].value);
+      if (this.children[i].children.length === 0) {
+        return false;
+      } else {
+        return this.contains(this.children[0].value);
+      }
     }
   }
 };
-
 
 /*
  * Complexity: What is the time complexity of the above functions?
