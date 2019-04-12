@@ -11,14 +11,18 @@ var LinkedList = function() {
   // edge cases - if the value is undefined, 
 
   list.addToTail = function(value) {
+    //
+    //
+    //
+    // declare list.tail.next to be the 
     var newNode = new Node (value);
-    console.log(newNode)
     if (list.head === null) {
       list.head = newNode;
       list.tail = newNode;
     } else {
       list.tail = newNode;
-      list.head.next = value;
+      list.tail.value
+      list.tail.next = list.head.value;
     }
   }; 
   // input - none
@@ -39,9 +43,9 @@ var LinkedList = function() {
       } else {
     // list.head becomes list.head.next
         var current = list.head.value;
-        list.head.value = list.head.next;
+        list.head.value = list.tail.value
+        list.tail.next = null;
         return current;
-    
       }
     }
   };
@@ -53,24 +57,24 @@ var LinkedList = function() {
   
   list.contains = function(target) {
     // Check if the value of the tail is equal to target
-    // If the value of the tail is equal to the target, return the tail
+    // If the value of the tail is equal to the target, return true
     // If the value doesn't equal the target, check if .next is null
-    // If .next is null, return false
+    // If .next is null, and this.tail is not null, then return false
     // If .next is not null, recursively call this .contains function again 
-    debugger;
     if (this.tail.value === target) {
       return true;
     } else {
       if (this.tail.next === null) {
-        debugger;
         return false;
       } else {
-        return this.contains(this.head.next)    
+        if (this.tail.next === target) {
+          return true;
+        } else {
+          return target === this.contains(this.tail.next);
+        }
       }
     }
   };
-  
-
   return list;
 };
 
