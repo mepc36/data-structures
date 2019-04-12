@@ -4,24 +4,72 @@ var LinkedList = function() {
 
   list.head = null;
   list.tail = null;
+  
+  // input - the value that will be declared on the object
+  // output - a side effect of having a new tail be added
+  // constraint - no constraint
+  // edge cases - if the value is undefined, 
 
   list.addToTail = function(value) {
-    var newNode = new Node ();
-    newNode.value = value; // add a value;
-    this.tail = newNode; // set the tail
-    newNode.next = list.value // tell it what should become the head if we delete the current head
-    return value;
-  };
+    var newNode = new Node (value);
+    console.log(newNode)
+    if (list.head === null) {
+      list.head = newNode;
+      list.tail = newNode;
+    } else {
+      list.tail = newNode;
+      list.head.next = value;
+    }
+  }; 
+  // input - none
+  // output - side effect of the head being removed
+  // constraint - no constraint
+  // edge cases - if list.head = und, or if list.head.next is und.
 
   list.removeHead = function() {
+    // check list.head if it is undefined
+    if (list.head === undefined) {
+      return undefined;
+    }
+    // if list.head is not undefined
+    else {
+    // if list.head.next is undefined
+      if (list.head.next === undefined) {
+        return undefined;
+      } else {
+    // list.head becomes list.head.next
+        var current = list.head.value;
+        list.head.value = list.head.next;
+        return current;
     
-    delete this.head.value;
-    this.head = newNode.next; // set a new head
+      }
+    }
   };
 
+  // input - the passed in target that we're looking for
+  // output - a boolean
+  // constraint - none
+  // edge case - no arguments, undefined, 
+  
   list.contains = function(target) {
-    
+    // Check if the value of the tail is equal to target
+    // If the value of the tail is equal to the target, return the tail
+    // If the value doesn't equal the target, check if .next is null
+    // If .next is null, return false
+    // If .next is not null, recursively call this .contains function again 
+    debugger;
+    if (this.tail.value === target) {
+      return true;
+    } else {
+      if (this.tail.next === null) {
+        debugger;
+        return false;
+      } else {
+        return this.contains(this.head.next)    
+      }
+    }
   };
+  
 
   return list;
 };

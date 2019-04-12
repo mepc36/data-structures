@@ -40,6 +40,7 @@ describe('linkedList', function() {
     linkedList.addToTail(4);
     linkedList.addToTail(5);
     expect(linkedList.contains(4)).to.equal(true);
+    // expect(linkedList.contains(5)).to.equal(false); // my added test
     expect(linkedList.contains(5)).to.equal(true);
     expect(linkedList.contains(6)).to.equal(false);
   });
@@ -52,4 +53,5 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  // add a test for when list.head.next is undefined
 });
