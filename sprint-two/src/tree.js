@@ -25,7 +25,7 @@ var treeMethods = {
 // children[0] ---> an object that's added to the children array which represents a single child of the tree, and
 // is accessed with a numerical index.
 // .value ---> a numerical value that's declared as a property on the object-members of that children array, 
-// representing the values of the trees child, as in children[0].value
+// representing the values of the tree's child, as in children[0].value
 
 // Pseudocode:
 // 1.) create a child object that will be added to the tree's children array
@@ -33,21 +33,61 @@ var treeMethods = {
 // 3.) push that augmented child object onto the tree's children array
 
 treeMethods.addChild = function(value) {
-  debugger;
-  var newChild = {};
-  newChild.value = value;
-  this.children.push(newChild);
-};
+    this.children.push(Tree(value));
+  };
 
-// input -
+// I.O.C.E.
+// input - a numerical value that we're looking for in the value property of any tree's
 // output - a boolean that describes whether or not the tree has this value;
-// constraints - 
-// edge cases - 
+// constraints - none
+// edge cases - if target is undefined
+
+// Pseudocode:
+// 1.) Run a for loop to iterate over every member of the current tree's children array
+// 2.) If the current child equals the target, return true
+// 3.) If the current child doesn't equal the target, check if it has any children
+// 4.) If the current child does have children, recursively run this same function and pass the children in
+// 5.) If the current child doesn't have children, just return false
+
+// treeMethods.contains = function(target) {
+//   if (this.children[0].value === target) {
+//     return true;
+//   } else {
+//     if (this.children.children === undefined) {
+//       return false;
+//     } else {
+//       return true;
+//     }
+//   }
+// };
+
+// treeMethods.contains = function(target) {
+//   for (var i = 0; i < this.children.length; i++) {
+//     if (this.children[i].value === target) {
+//       return true;
+//     } else {
+//       if (this.children[i].children.length === 0) {
+//         return false;
+//       } else {
+//         debugger;
+//         return this.contains(this.children[i].children[0].value);
+//       }
+//     }
+//   }
+// };
 
 treeMethods.contains = function(target) {
-
+  if (this.children.value === target) {
+    return true;
+  } else {
+    if (this.children.length === 0) {
+      return false;
+    } else {
+      debugger;
+      return this.contains(this.children[0].value);
+    }
+  }
 };
-
 
 
 /*
