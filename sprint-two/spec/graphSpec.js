@@ -17,6 +17,7 @@ describe('graph', function() {
 
   it('should store values as nodes that were inserted', function() {
     graph.addNode(1);
+    graph.addNode(2);
     expect(graph.contains(1)).to.equal(true);
   });
 
@@ -54,10 +55,23 @@ describe('graph', function() {
     expect(graph.hasEdge(4, 5)).to.equal(false);
   });
 
+  it('multiplyTen',function(){
+    var multiplyTen = function(item) {
+      return item * 10;
+    }
+    graph.addNode(3);
+    graph.addNode(4);
+    graph.forEachNode(multiplyTen);
+    expect(graph.contains(30)).to.equal(true);
+    expect(graph.contains(40)).to.equal(true);
+
+  })
+
   it('should execute a callback on each node in the graph', function() {
     var connectToFive = function(item) {
       graph.addEdge(item, 5);
     };
+    
     graph.addNode(5);
     graph.addNode(2);
     graph.addNode(1);
