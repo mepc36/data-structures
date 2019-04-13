@@ -13,12 +13,19 @@
 
 var LimitedArray = function(limit) {
   var storage = [];
-
   var limitedArray = {};
+  
   limitedArray.get = function(index) {
     checkLimit(index);
     return storage[index];
   };
+
+  // I.O.C.E.
+  // input - a numerical index and a string value
+  // output - no return; inserts a new value at the index argument on the storage array
+  // constraint -
+  // edge case - 
+
   limitedArray.set = function(index, value) {
     checkLimit(index);
     storage[index] = value;
