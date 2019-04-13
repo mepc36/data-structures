@@ -43,7 +43,7 @@ describe('graph', function() {
     graph.addEdge(5, 4);
     expect(graph.hasEdge(4, 5)).to.equal(true);
     graph.removeEdge(5, 4);
-    expect(graph.hasEdge(4, 5)).to.equal(false);
+    expect(graph.hasEdge(4, 5)).to.equal(false); // The test we're failing; we need false;
   });
 
   it('should remove edges between nodes when a node is removed', function() {
@@ -68,6 +68,11 @@ describe('graph', function() {
   // });
 
   it('should execute a callback on each node in the graph', function() {
+    // Input - a node object with a value on it
+    // Output- none; S.E.: the passed-in node object gets a new .edge property
+    // Constraint - none
+    // Edge Case - TBD
+
     var connectToFive = function(item) {
       graph.addEdge(item, 5);
     };

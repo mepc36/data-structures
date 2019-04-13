@@ -1,5 +1,3 @@
-
-
 // Instantiate a new graph
 var Graph = function() {
   this.nodes = [];
@@ -39,7 +37,6 @@ Graph.prototype.addNode = function(node) {
 // 3.) If it is, return true;
 // 4.) If it's not, just keep checking
 // 5.) Add a return false at the very end of the program 
-// edge case - 
 
 Graph.prototype.contains = function(node) {
   // iterate over all nodes
@@ -81,21 +78,23 @@ Graph.prototype.removeNode = function(node) {
 // 1.)
 
 Graph.prototype.hasEdge = function(fromNode, toNode) {
-  // check if it contains both
   if (this.contains(fromNode) && this.contains(toNode)) {
-  // if it does, 
     for (var i = 0; i < this.nodes.length; i++) {
       if (this.nodes[i].node === fromNode) {
-        if (this.nodes[i].edge === toNode) {
-          return true;
-        } else {
+        if (this.nodes[i].edge === undefined || this.nodes[i].edge.length === 0) {
           return false;
+        }
+        for (var j = 0; j < this.nodes[i].edge.length; i++) {
+          if (this.nodes[i].edge[j] === toNode) {
+            return true;
+          } else {
+            return false;
+          }
         }
       }
     }
-  } else {
-    return false;
   }
+  return false;
 };
 
 // Connects two nodes in a graph by adding an edge between them.
@@ -116,10 +115,22 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
   if (this.contains(fromNode) && this.contains(toNode)) {
     for (var i = 0; i < this.nodes.length; i++) {
       if (this.nodes[i].node === fromNode) {
-        this.nodes[i].edge = toNode;
+        if (this.nodes[i].edge === undefined) {
+          var newEdges = [];
+          newEdges.push(toNode);
+          this.nodes[i].edge = newEdges;
+        } else {
+          this.nodes[i].edge.push(toNode)
+        }
       }
       if (this.nodes[i].node === toNode) {
-        this.nodes[i].edge = fromNode;
+        if (this.nodes[i].edge === undefined) {
+          var newEdges = [];
+          newEdges.push(fromNode);
+          this.nodes[i].edge = newEdges;
+        } else {
+          this.nodes[i].edge.push(fromNode)
+        }
       }
     }
   }
@@ -130,10 +141,24 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
   if (this.contains(fromNode) && this.contains(toNode)) {
     for (var i = 0; i < this.nodes.length; i++) {
       if (this.nodes[i].node === fromNode) {
-        delete this.nodes[i].edge;
+        for (var j = 0; j < this.nodes[i].edge.length; j++) {
+          if (this.nodes[i].edge[j] === toNode) {
+            delete this.nodes[i].edge
+            break;
+          }
+          break;
+        }
       }
+    }
+    for (var i = 0; i < this.nodes.length; i++) {
       if (this.nodes[i].node === toNode) {
-        delete this.nodes[i].edge;
+        for (var j = 0; j < this.nodes[i].edge.length; j++) {
+          if (this.nodes[i].edge[j] === fromNode) {
+            delete this.nodes[i].edge
+            break;
+          }
+          break;
+        }
       }
     }
   }
@@ -141,7 +166,7 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 // I.O.C.E.
 // input - a function
-// output - none; the function gets applied to every node in the graph
+// output - none; the function gets applied to every node in the graph's this.nodes array
 // constraint - none
 // edge case - if the graph has no nodes;
 
@@ -153,16 +178,11 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 Graph.prototype.forEachNode = function(cb) {
   // make a for loop to iterate over every node in the graph's node array
   // apply the function to each node
-  debugger;
-  for (var i = 0; i < this.nodes.length; i++ ) {
-    var newValue = cb(this.nodes[i]);
-    this.nodes.push(newValue);
-    debugger;
+  for (var i = 0; i < this.nodes.length; i++) {
+    cb(this.nodes[i].node)
   }
 };
 
 /*
  * Complexity: What is the time complexity of the above functions?
  */
-
-
