@@ -153,10 +153,10 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 Graph.prototype.forEachNode = function(cb) {
   // make a for loop to iterate over every node in the graph's node array
   // apply the function to each node
-
+  debugger;
   for (var i = 0; i < this.nodes.length; i++ ) {
-    var newValue = cb(this.nodes[i].node);
-    this.nodes[i].node = newValue;
+    var newValue = cb(this.nodes[i]);
+    this.nodes.push(newValue);
     debugger;
   }
 };

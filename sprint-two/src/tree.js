@@ -33,8 +33,8 @@ var treeMethods = {
 // 3.) push that augmented child object onto the tree's children array
 
 treeMethods.addChild = function(value) {
-    this.children.push(Tree(value));
-  };
+  this.children.push(Tree(value));
+};
 
 // I.O.C.E.
 // input - a numerical value that we're looking for in the value property of any tree's
@@ -48,7 +48,7 @@ treeMethods.addChild = function(value) {
 // 3.) If the current child doesn't equal the target, check if it has any children
 // 4.) If the current child does have children, recursively run this same function and pass the children in
 // 5.) If the current child doesn't have children, just return false
-
+``
 treeMethods.contains = function(target) {
   if (target === undefined) {
     return false;

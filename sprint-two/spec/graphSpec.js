@@ -55,17 +55,17 @@ describe('graph', function() {
     expect(graph.hasEdge(4, 5)).to.equal(false);
   });
 
-  it('multiplyTen',function(){
-    var multiplyTen = function(item) {
-      return item * 10;
-    }
-    graph.addNode(3);
-    graph.addNode(4);
-    graph.forEachNode(multiplyTen);
-    expect(graph.contains(30)).to.equal(true);
-    expect(graph.contains(40)).to.equal(true);
+  // it('should handle simple callbacks, like multiplying each node by 10',function(){
+  //   var multiplyTen = function(item) {
+  //     return item * 10;
+  //   }
+  //   graph.addNode(3);
+  //   graph.addNode(4);
+  //   graph.forEachNode(multiplyTen);
+  //   expect(graph.contains(30)).to.equal(true);
+  //   expect(graph.contains(40)).to.equal(true);
 
-  })
+  // });
 
   it('should execute a callback on each node in the graph', function() {
     var connectToFive = function(item) {
@@ -83,3 +83,4 @@ describe('graph', function() {
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
 });
+   
